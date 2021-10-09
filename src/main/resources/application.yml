@@ -1,0 +1,56 @@
+# Server
+server:
+  port: 8101
+
+# Logging
+logging:
+  config: classpath:log/logback-local.xml
+    
+# Spring Config, Gateway Routing, Filter
+spring:
+  application:
+    name: core-gateway
+  cloud:
+    gateway:
+      routes:
+      # --------------------
+      # Application Member
+      # --------------------
+      - id: app-member
+        uri: lb://app-member
+        predicates:
+          - Path= /api/member/{segment}
+        filters:
+          - SetPath= /api/microsite/member/{segment}
+          - JwtFilter= name,true
+      # ----------------------------------
+      # Spring Security Oauth
+      # ----------------------------------
+      - id: core-oauth-security
+        uri: lb://core-security
+        predicates:
+          - Path= /oauth/**
+      # ----------------------------------
+      # User Registration
+      # ----------------------------------
+      - id: core-auth-security
+        uri: lb://core-security
+        predicates:
+          - Path= /auth/**
+        filters:
+          - BasicFilter= name,true
+
+# Finbox Security
+finbox: 
+  keystore:
+    alias: finbox-sec
+    id: finbox-sec-key-id
+  auth:
+    server: http://localhost:8102
+
+# Eureka Discovery Client Consumer
+eureka:
+  client:
+    register-with-eureka: false
+    serviceUrl:
+      defaultZone: http://localhost:8103/eureka
