@@ -1,11 +1,3 @@
-# Server
-server:
-  port: 8101
-
-# Logging
-logging:
-  config: classpath:log/logback-local.xml
-    
 # Spring Config, Gateway Routing, Filter
 spring:
   application:
@@ -39,18 +31,3 @@ spring:
           - Path= /auth/**
         filters:
           - BasicFilter= name,true
-
-# Finbox Security
-finbox: 
-  keystore:
-    alias: finbox-sec
-    id: finbox-sec-key-id
-  auth:
-    server: http://localhost:8102
-
-# Eureka Discovery Client Consumer
-eureka:
-  client:
-    register-with-eureka: false
-    serviceUrl:
-      defaultZone: http://localhost:8103/eureka

@@ -1,4 +1,4 @@
-package com.metranet.finbox.core.exception;
+package com.commerce.core.gateway.exception;
 
 import com.auth0.jwt.exceptions.JWTVerificationException;
 

@@ -1,4 +1,4 @@
-package com.metranet.finbox.core.config;
+package com.commerce.core.gateway.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

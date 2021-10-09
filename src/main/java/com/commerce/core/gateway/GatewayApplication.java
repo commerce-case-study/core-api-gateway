@@ -1,12 +1,10 @@
-package com.metranet.finbox.core;
+package com.commerce.core.gateway;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 
-@EnableFeignClients(basePackages = {
-        "com.metranet.finbox.service.member"
-})
+@EnableFeignClients
 @SpringBootApplication
 public class GatewayApplication {
 

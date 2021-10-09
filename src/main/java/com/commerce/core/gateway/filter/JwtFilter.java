@@ -1,4 +1,4 @@
-package com.metranet.finbox.core.filter;
+package com.commerce.core.gateway.filter;
 
 import java.io.IOException;
 import java.net.URL;
@@ -27,7 +27,7 @@ import com.auth0.jwt.JWT;
 import com.auth0.jwt.JWTVerifier;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.interfaces.DecodedJWT;
-import com.metranet.finbox.core.exception.AuthException;
+import com.commerce.core.gateway.exception.AuthException;
 
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;

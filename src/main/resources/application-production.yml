@@ -1,0 +1,18 @@
+# Server
+server:
+  port: 8080
+
+# Finbox Security
+finbox: 
+  keystore:
+    alias: finbox-sec
+    id: finbox-sec-key-id
+  auth:
+    server: http://security-server.prod
+
+# Eureka Discovery Client Consumer
+eureka:
+  client:
+    register-with-eureka: true
+    serviceUrl:
+      defaultZone: http://discovery-service.prod/eureka
