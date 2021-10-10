@@ -5,16 +5,6 @@ spring:
   cloud:
     gateway:
       routes:
-      # --------------------
-      # Application Member
-      # --------------------
-      - id: app-member
-        uri: lb://app-member
-        predicates:
-          - Path= /api/member/{segment}
-        filters:
-          - SetPath= /api/microsite/member/{segment}
-          - JwtFilter= name,true
       # ----------------------------------
       # Spring Security Oauth
       # ----------------------------------
@@ -22,12 +12,41 @@ spring:
         uri: lb://core-security
         predicates:
           - Path= /oauth/**
-      # ----------------------------------
-      # User Registration
-      # ----------------------------------
-      - id: core-auth-security
-        uri: lb://core-security
+      # --------------------
+      # Web Member
+      # --------------------
+      - id: app-member
+        uri: lb://web-member
         predicates:
-          - Path= /auth/**
+          - Path= /api/member/pvt/{segment}
         filters:
+          - SetPath= /api/microsite/member/{segment}
+          - JwtFilter= name,true
+
+      - id: app-member-pub
+        uri: lb://web-member
+        predicates:
+          - Path= /api/member/pub/{segment}
+        filters:
+          - SetPath= /api/microsite/member/pub/{segment}
           - BasicFilter= name,true
+      # --------------------
+      # Web Order
+      # --------------------
+      - id: app-trade
+        uri: lb://web-order
+        predicates:
+          - Path= /api/order/{segment}
+        filters:
+          - SetPath= /api/microsite/order/{segment}
+          - JwtFilter= name,true
+      # --------------------
+      # Web Payment
+      # --------------------
+      - id: app-payment
+        uri: lb://web-payment
+        predicates:
+          - Path= /api/payment/{segment}
+        filters:
+          - SetPath= /api/microsite/payment/{segment}
+          - JwtFilter= name,true
