@@ -20,7 +20,7 @@ spring:
         predicates:
           - Path= /api/member/pvt/{segment}
         filters:
-          - SetPath= /api/microsite/member/{segment}
+          - SetPath= /api/microsite/member/pvt/{segment}
           - JwtFilter= name,true
 
       - id: app-member-pub
@@ -46,7 +46,13 @@ spring:
       - id: app-payment
         uri: lb://web-payment
         predicates:
-          - Path= /api/payment/{segment}
+          - Path= /api/payment/pvt/{segment}
         filters:
-          - SetPath= /api/microsite/payment/{segment}
+          - SetPath= /api/microsite/payment/pvt/{segment}
           - JwtFilter= name,true
+      - id: app-payment-notif
+        uri: lb://web-payment
+        predicates:
+          - Path= /api/payment/pub/{segment}
+        filters:
+          - SetPath= /api/microsite/payment/pub/{segment}
